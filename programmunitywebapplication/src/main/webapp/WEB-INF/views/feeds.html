@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Feed</title>
+</head>
+<body>
+	<ul>
+		<li th:each="feed:${feedList}" th:id="spittle_${feed.id}">
+			<div class="feedMessage" th:text="${feed.message}"></div>
+			<div>
+				<span class="feedTime" th:text="${feed.time}"></span> <span class="feedLocation"></span>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>
