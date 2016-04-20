@@ -1,32 +1,31 @@
 package com.programmunity.webapplication.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Handles requests for the application home page.
+ * Controller to implement mapping for home page "/"
+ * 
+ * @author Basheer
+ *
  */
+@RequestMapping("/")
 @Controller
-@RequestMapping(value = {"/", "/landing", "/home"})
 public class HomeController extends BaseController
 {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Maps GET "/" to home.html
+	 * 
+	 * @return
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home()
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView onHome()
 	{
 		ModelAndView mav = new ModelAndView("home");
-		bindContentToView(mav);
+		bindContentToModel(mav);
 		return mav;
 	}
-
-	
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Members</title>
+</head>
+<body>
+	<ul>
+		<li th:each="coder : ${coders}">
+			<h3 th:text="${coder.userName}">null</h3>
+			<!-- <h5 th:text="${coder.firstName} ${coder.lastName}">null</h5> -->
+			<!-- <p th:text="${coder.description}">null</p> -->
+		</li>
+	</ul>
+</body>
+</html>
