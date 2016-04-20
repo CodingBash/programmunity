@@ -5,7 +5,7 @@
 </head>
 <body>
 	<ul>
-		<li th:each="feed:${feedList}" th:id="spittle_${feed.id}">
+		<li th:each="feed:${feedList}" th:id="feed_${feed.id}">
 			<div class="feedMessage" th:text="${feed.message}"></div>
 			<div>
 				<span class="feedTime" th:text="${feed.time}"></span> <span class="feedLocation"></span>

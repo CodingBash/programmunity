@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Insert title here</title>
+<title th:text="Profile - ${coder.userName}">Profile</title>
 </head>
 <body>
-	<div class="profileView">
-		<h1 th:text="${user.userName}"></h1>
-		<p th:text="${user.firstName}" />
-		<p th:text="${user.lastName}" />
-	</div>
+	<h3 th:text="${coder.userName}">null</h3>
+	<h5 th:text="${coder.firstName} ${coder.lastName}">null</h5>
+	<p th:text="${coder.description}">null</p>
 </body>
 </html>
