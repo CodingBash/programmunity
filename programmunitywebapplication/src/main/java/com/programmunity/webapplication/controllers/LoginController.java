@@ -59,11 +59,6 @@ public class LoginController extends BaseController
 		return mav;
 	}
 
-	// TODO: Implement Coder model
-	public class Coder
-	{
-	}
-
 	// TODO: Implement UserRepository service
 	public class UserRepository
 	{

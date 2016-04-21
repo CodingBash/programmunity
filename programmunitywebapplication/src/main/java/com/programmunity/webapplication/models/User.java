@@ -1,25 +1,91 @@
 package com.programmunity.webapplication.models;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
+/**
+ * Model containing information for an application user
+ * 
+ * @author Basheer
+ *
+ */
 public class User
 {
+
 	@NotNull
-	@Size(min=2, max=25)
-	private String firstName;
-	
+	@Size(min = 5, max = 10)
+	private String userId;
+
 	@NotNull
-	@Size(min=2, max=25)
-	private String lastName;
-	
-	@NotNull
-	@Size(min=5, max=16)
+	@Size(min = 5, max = 15)
 	private String userName;
+
+	@NotNull
+	@Email
+	@Size(min = 5, max = 35)
+	private String email;
+
+	// TODO: Add tighter password validation (numbers, digits, decimals, etc)
+	@NotNull
+	@Size(min = 5, max = 30)
+	private String password;
+
+	@NotNull
+	@Size(min = 2, max = 30)
+	private String firstName;
+
+	@NotNull
+	@Size(min = 2, max = 30)
+	private String lastName;
+
+	@Size(max = 256)
+	private String description;
+
+	@Size(max = 25)
+	private List<Skill> skills;
+
+	@NotNull
+	@Past
+	private Date birthdate;
 	
 	@NotNull
-	@Size(min=5, max=25)
-	private String password;
+	
+
+	public String getUserName()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+
+	public String getEmail()
+	{
+		return email;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 
 	public String getFirstName()
 	{
@@ -41,24 +107,34 @@ public class User
 		this.lastName = lastName;
 	}
 
-	public String getUserName()
+	public String getDescription()
 	{
-		return userName;
+		return description;
 	}
 
-	public void setUserName(String userName)
+	public void setDescription(String description)
 	{
-		this.userName = userName;
+		this.description = description;
 	}
 
-	public String getPassword()
+	public List<Skill> getSkills()
 	{
-		return password;
+		return skills;
 	}
 
-	public void setPassword(String password)
+	public void setSkills(List<Skill> skills)
 	{
-		this.password = password;
+		this.skills = skills;
+	}
+
+	public Date getBirthdate()
+	{
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate)
+	{
+		this.birthdate = birthdate;
 	}
 
 }
