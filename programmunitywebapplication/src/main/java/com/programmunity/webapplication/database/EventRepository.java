@@ -12,10 +12,12 @@ public interface EventRepository
 	 */
 	public Object getEvents(long eventId, int count);
 
+	public Object getEvents(int count);
+	
 	public void register(Long eventId, Long userId);
 
-	public Object getEvents(Long eventId);
+	public Object getEvent(Long eventId);
 
-	public Object getEvents(int count);
+
 
 }

@@ -42,13 +42,13 @@ public class Event
 	 */
 	@NotNull
 	@Size(min = 1, max = 25)
-	private List<Residable> hosts;
+	private List<? extends Residable> hosts;
 
 	/**
 	 * 
 	 */
 	@Size(max = 200)
-	private List<Residable> attendees;
+	private List<? extends Residable> attendees;
 
 	@Future
 	@NotNull
@@ -91,7 +91,7 @@ public class Event
 		this.description = description;
 	}
 
-	public List<Residable> getHosts()
+	public List<? extends Residable> getHosts()
 	{
 		return hosts;
 	}
@@ -101,12 +101,12 @@ public class Event
 		this.hosts = hosts;
 	}
 
-	public List<Residable> getAttendees()
+	public List<? extends Residable> getAttendees()
 	{
 		return attendees;
 	}
 
-	public void setAttendees(List<Residable> attendees)
+	public void setAttendees(List<? extends Residable> attendees)
 	{
 		this.attendees = attendees;
 	}

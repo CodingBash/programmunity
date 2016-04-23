@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.database.EventRepository;
+
 @RequestMapping("/events")
 @Controller
 public class EventsController extends BaseController
@@ -38,7 +40,7 @@ public class EventsController extends BaseController
 	{
 		ModelAndView mav = new ModelAndView("event");
 		bindContentToModel(mav);
-		mav.addObject("event", eventRepository.getEvents(eventId));
+		mav.addObject("event", eventRepository.getEvent(eventId));
 		return mav;
 	}
 
@@ -55,32 +57,4 @@ public class EventsController extends BaseController
 		// notify.js confirmation
 	}
 
-	public class EventRepository
-	{
-
-		public Object getEvents(long eventId, int count)
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public void register(Long eventId, Long userId)
-		{
-			// TODO Auto-generated method stub
-
-		}
-
-		public Object getEvents(Long eventId)
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public Object getEvents(int count)
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-	}
 }
