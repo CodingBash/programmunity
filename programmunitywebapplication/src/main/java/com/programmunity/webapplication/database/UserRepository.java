@@ -20,7 +20,7 @@ public interface UserRepository
 	 * @param coder
 	 * @throws UserSaveException
 	 */
-	public void saveUser(User user) throws UserSaveException;
+	public void saveUser(User user) throws UserSaveException; 
 
 	// TODO: Define start ID
 	/**

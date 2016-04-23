@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.programmunity.webapplication.constants.SkillLevel;
 import com.programmunity.webapplication.exceptions.UserRetrievalException;
 import com.programmunity.webapplication.exceptions.UserSaveException;
 import com.programmunity.webapplication.models.Skill;
 import com.programmunity.webapplication.models.User;
 
+@Component
 public class UserRepositoryImpl implements UserRepository
 {
 

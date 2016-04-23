@@ -5,10 +5,10 @@
 </head>
 <body>
 	<ul>
-		<li th:each="feed:${feedList}" th:id="feed_${feed.id}">
-			<div class="feedMessage" th:text="${feed.message}"></div>
+		<li th:each="feed:${feeds}">
+			<div class="feedMessage" th:text="${feed.post}"></div>
 			<div>
-				<span class="feedTime" th:text="${feed.time}"></span> <span class="feedLocation"></span>
+				<!-- Add other attributes -->
 			</div>
 		</li>
 	</ul>

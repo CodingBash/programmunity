@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.programmunity.webapplication.models.Event;
 import com.programmunity.webapplication.models.Group;
 import com.programmunity.webapplication.models.Group.Directory;
@@ -19,6 +21,7 @@ import com.programmunity.webapplication.models.User;
  * @author Basheer
  *
  */
+@Component
 public class EventRepositoryImpl implements EventRepository
 {
 
@@ -33,6 +36,9 @@ public class EventRepositoryImpl implements EventRepository
 		for (int i = 0; i <= count; i++)
 		{
 			Event event = new Event();
+			event.setTitle("Title: " + i);
+			event.setDescription(
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ornare lacus. Integer sit amet nulla at quam vehicula rutrum. Nam imperdiet ultrices nibh eget consequat. Fusce et mi vitae orci sollicitudin posuere. Vivamus aliquet eu nisl eu ultrices. Curabitur suscipit scelerisque lacus, non efficitur ex tristique a. Curabitur a molestie nibh. Maecenas aliquam turpis est, sit amet venenatis mauris lobortis quis. Maecenas quis ultrices justo. Phasellus volutpat enim vel nulla iaculis, vitae scelerisque est luctus. Donec leo lectus, ultrices nec dui vitae, tempor aliquet velit. Nullam placerat mollis auctor. Mauris laoreet dolor volutpat diam ultricies hendrerit.");
 			List<Residable> attendees = new ArrayList<Residable>();
 
 			Group group = new Group();
@@ -62,7 +68,7 @@ public class EventRepositoryImpl implements EventRepository
 			event.setAttendees(attendees);
 			eventList.add(event);
 		}
-		return null;
+		return eventList;
 	}
 
 	/**
