@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.UserRepository;
+import com.programmunity.webapplication.exceptions.UserRetrievalException;
 
 /**
  * Controller for members page
@@ -37,9 +38,9 @@ public class MembersController extends BaseController
 		try
 		{
 			mav.addObject("members", userRepository.getUsers(idStart, count));
-		} catch (Exception e)
+		} catch (UserRetrievalException e)
 		{
-			mav.addObject("error", "Member retrieval error");
+			mav.addObject("error", e.getMessage());
 			e.printStackTrace();
 		}
 		return mav;

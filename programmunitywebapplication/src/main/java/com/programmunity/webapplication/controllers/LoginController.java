@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.UserRepository;
+import com.programmunity.webapplication.exceptions.UserSaveException;
 import com.programmunity.webapplication.models.User;
 
 /**
@@ -57,7 +58,14 @@ public class LoginController extends BaseController
 			return new ModelAndView("login");
 		}
 		ModelAndView mav = new ModelAndView("redirect: /dashboard");
-		userRepository.saveUser(coder);
+		try
+		{
+			userRepository.saveUser(coder);
+		} catch (UserSaveException e)
+		{
+			mav.addObject("error", e.getMessage());
+			e.printStackTrace();
+		}
 		bindContentToModel(mav);
 		return mav;
 	}

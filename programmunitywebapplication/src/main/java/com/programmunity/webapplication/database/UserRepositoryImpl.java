@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.programmunity.webapplication.constants.SkillLevel;
+import com.programmunity.webapplication.exceptions.UserRetrievalException;
+import com.programmunity.webapplication.exceptions.UserSaveException;
 import com.programmunity.webapplication.models.Skill;
 import com.programmunity.webapplication.models.User;
 
@@ -12,13 +14,13 @@ public class UserRepositoryImpl implements UserRepository
 {
 
 	@Override
-	public void saveUser(User user)
+	public void saveUser(User user) throws UserSaveException
 	{
 
 	}
 
 	@Override
-	public List<User> getUsers(long idStart, int count) throws Exception
+	public List<User> getUsers(long idStart, int count) throws UserRetrievalException
 	{
 		List<User> userList = new ArrayList<User>(count);
 		for (int i = 0; i <= count; i++)
@@ -61,7 +63,7 @@ public class UserRepositoryImpl implements UserRepository
 	}
 
 	@Override
-	public User getUser(long userId)
+	public User getUser(long userId) throws UserRetrievalException
 	{
 		// TODO Auto-generated method stub
 		return null;
