@@ -34,23 +34,17 @@ public class EventsController extends BaseController
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView eventDetails(@RequestParam(value = "eventId") Long eventId)
+	public ModelAndView eventDetails(@RequestParam(value = "eventId") long eventId)
 	{
 		ModelAndView mav = new ModelAndView("event");
 		bindContentToModel(mav);
-		if (eventId != null)
-		{
-			mav.addObject("event", eventRepository.getEvents(eventId));
-		} else
-		{
-			// TODO: Error handling
-		}
+		mav.addObject("event", eventRepository.getEvents(eventId));
 		return mav;
 	}
 
 	// Need validation and CSRF
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView register(@RequestParam(value = "eventId") Long eventId,
+	public ModelAndView register(@RequestParam(value = "eventId") long eventId,
 			@RequestParam(value = "userId") Long userId)
 	{
 		ModelAndView mav = new ModelAndView("redirect: /events?eventId=" + eventId);

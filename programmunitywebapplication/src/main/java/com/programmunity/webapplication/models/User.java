@@ -3,10 +3,12 @@ package com.programmunity.webapplication.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 
 /**
@@ -15,12 +17,13 @@ import org.hibernate.validator.constraints.Email;
  * @author Basheer
  *
  */
-public class User
+public class User extends Residable
 {
 
-	@NotNull
-	@Size(min = 5, max = 10)
-	private String userId;
+	// TODO: Verify hibernate
+	@GenericGenerator(name = "generator", strategy = "identity")
+	@GeneratedValue(generator = "generator")
+	private long userId;
 
 	@NotNull
 	@Size(min = 5, max = 15)
@@ -53,9 +56,6 @@ public class User
 	@NotNull
 	@Past
 	private Date birthdate;
-	
-	@NotNull
-	
 
 	public String getUserName()
 	{

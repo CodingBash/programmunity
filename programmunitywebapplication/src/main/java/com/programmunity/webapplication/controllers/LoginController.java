@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.database.UserRepository;
+import com.programmunity.webapplication.models.User;
+
 /**
  * Controller that hands login page
  * 
@@ -47,7 +50,7 @@ public class LoginController extends BaseController
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView submitLogin(@Valid Coder coder, Errors errors)
+	public ModelAndView submitLogin(@Valid User coder, Errors errors)
 	{
 		if (errors.hasErrors())
 		{
@@ -59,24 +62,4 @@ public class LoginController extends BaseController
 		return mav;
 	}
 
-	// TODO: Implement UserRepository service
-	public class UserRepository
-	{
-		public void saveUser(Coder coder)
-		{
-		}
-
-		// TODO: Implement exception
-		public Object getMembers(long idStart, int count) throws Exception
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public Object getMember(long userId)
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-	}
 }

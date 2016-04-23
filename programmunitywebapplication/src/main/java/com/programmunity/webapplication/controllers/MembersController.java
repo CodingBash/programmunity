@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.programmunity.webapplication.controllers.LoginController.UserRepository;
+import com.programmunity.webapplication.database.UserRepository;
 
 /**
  * Controller for members page
@@ -36,7 +36,7 @@ public class MembersController extends BaseController
 		bindContentToModel(mav);
 		try
 		{
-			mav.addObject("members", userRepository.getMembers(idStart, count));
+			mav.addObject("members", userRepository.getUsers(idStart, count));
 		} catch (Exception e)
 		{
 			mav.addObject("error", "Member retrieval error");

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.programmunity.webapplication.controllers.LoginController.UserRepository;
+import com.programmunity.webapplication.database.UserRepository;
 
 /**
  * Controller for profile page
@@ -34,7 +34,7 @@ public class ProfileController extends BaseController
 	{
 		ModelAndView mav = new ModelAndView("profile");
 		bindContentToModel(mav);
-		mav.addObject("coder", userRepository.getMember(userId));
+		mav.addObject("coder", userRepository.getUser(userId));
 		return mav;
 	}
 }
