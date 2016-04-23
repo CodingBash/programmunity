@@ -1,2 +1,4 @@
 /Users/
 *.project
+*.classpath
+*.springBeans
