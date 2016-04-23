@@ -27,7 +27,7 @@ public class EventRepositoryImpl implements EventRepository
 	 *      int)
 	 */
 	@Override
-	public Object getEvents(long eventId, int count)
+	public List<Event> getEvents(long eventId, int count)
 	{
 		List<Event> eventList = new ArrayList<Event>(count);
 		for (int i = 0; i <= count; i++)
@@ -69,7 +69,7 @@ public class EventRepositoryImpl implements EventRepository
 	 * @see com.programmunity.webapplication.database.EventRepository#getEvents(int)
 	 */
 	@Override
-	public Object getEvents(int count)
+	public List<Event> getEvents(int count)
 	{
 		return getEvents(-1, 20);
 	}
@@ -79,7 +79,7 @@ public class EventRepositoryImpl implements EventRepository
 	 *      lang.Long, java.lang.Long)
 	 */
 	@Override
-	public void register(Long eventId, Long userId)
+	public void register(long eventId, long userId)
 	{
 		// TODO Auto-generated method stub
 
@@ -90,7 +90,7 @@ public class EventRepositoryImpl implements EventRepository
 	 *      lang.Long)
 	 */
 	@Override
-	public Object getEvent(Long eventId)
+	public Event getEvent(long eventId)
 	{
 		Event event = new Event();
 		List<Residable> attendees = new ArrayList<Residable>();
@@ -121,6 +121,16 @@ public class EventRepositoryImpl implements EventRepository
 
 		event.setAttendees(attendees);
 		return event;
+	}
+
+	/**
+	 * @see com.programmunity.webapplication.database.EventRepository#getEvents(
+	 *      List<Long>)
+	 */
+	@Override
+	public List<Event> getEvents(List<Long> eventIds) throws RuntimeException
+	{
+		return getEvents(-1, eventIds.size());
 	}
 
 }

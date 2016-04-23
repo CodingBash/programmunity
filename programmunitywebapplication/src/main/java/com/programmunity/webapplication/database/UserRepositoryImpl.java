@@ -13,12 +13,18 @@ import com.programmunity.webapplication.models.User;
 public class UserRepositoryImpl implements UserRepository
 {
 
+	/**
+	 * @see UserRepository#saveUser(User)
+	 */
 	@Override
 	public void saveUser(User user) throws UserSaveException
 	{
 
 	}
 
+	/**
+	 * @see UserRepository#getUsers(long, int)
+	 */
 	@Override
 	public List<User> getUsers(long idStart, int count) throws UserRetrievalException
 	{
@@ -62,6 +68,9 @@ public class UserRepositoryImpl implements UserRepository
 		return userList;
 	}
 
+	/**
+	 * @see UserRepository#getUser(long)
+	 */
 	@Override
 	public User getUser(long userId) throws UserRetrievalException
 	{
