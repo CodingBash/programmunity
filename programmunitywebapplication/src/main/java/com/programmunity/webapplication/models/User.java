@@ -53,6 +53,12 @@ public class User extends Residable
 	@Size(max = 25)
 	private List<Skill> skills;
 
+	/**
+	 * Field only used for profile reference, not for logical processing
+	 */
+	@Size(max = 50)
+	private List<Group> groups;
+	
 	@NotNull
 	@Past
 	private Date birthdate;
