@@ -3,6 +3,8 @@ package com.programmunity.webapplication.models;
 import java.util.Map;
 
 import javax.persistence.GeneratedValue;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,10 +21,15 @@ public class Group extends Residable
 	@GeneratedValue(generator = "generator")
 	private long groupId;
 
-	private String title;
+	@NotNull
+	@Size(max = 50)
+	private String groupName;
 
+	@NotNull
+	@Size(max = 250)
 	private String description;
 
+	@NotNull
 	private Directory directory;
 
 	/**
@@ -45,18 +52,18 @@ public class Group extends Residable
 	/**
 	 * @return the title
 	 */
-	public String getTitle()
+	public String getGroupName()
 	{
-		return title;
+		return groupName;
 	}
 
 	/**
 	 * @param title
 	 *            the title to set
 	 */
-	public void setTitle(String title)
+	public void setGroupName(String groupName)
 	{
-		this.title = title;
+		this.groupName = groupName;
 	}
 
 	/**
