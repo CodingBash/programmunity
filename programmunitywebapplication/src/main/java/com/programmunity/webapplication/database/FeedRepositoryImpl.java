@@ -64,4 +64,14 @@ public class FeedRepositoryImpl implements FeedRepository
 		return feed;
 	}
 
+	/**
+	 * @see com.programmunity.webapplication.database.FeedRepository#getFeeds(int,
+	 *      String, int)
+	 */
+	@Override
+	public List<Feed> getFeeds(int page, String sort, int count)
+	{
+		return getFeeds(Long.MAX_VALUE, count);
+	}
+
 }

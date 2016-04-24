@@ -36,6 +36,19 @@ public interface FeedRepository
 	public List<Feed> getFeeds(List<Long> feedIds);
 
 	/**
+	 * Get feeds with a page, sort, and count parameter
+	 * 
+	 * @param page
+	 *            the first *count* amount of feeds
+	 * @param sort
+	 *            how the feeds will be sorted
+	 * @param count
+	 *            how many feeds per page
+	 * @return the list of feeds
+	 */
+	public List<Feed> getFeeds(int page, String sort, int count);
+
+	/**
 	 * Get a feed from a feed ID
 	 * 
 	 * @param feedId

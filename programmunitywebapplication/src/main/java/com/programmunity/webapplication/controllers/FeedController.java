@@ -10,6 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.FeedRepository;
 
+/**
+ * Handles feed mappings
+ * 
+ * @author Basheer
+ *
+ */
 @RequestMapping("/feeds")
 @Controller
 public class FeedController extends BaseController
@@ -18,27 +24,37 @@ public class FeedController extends BaseController
 	@Autowired
 	private FeedRepository feedRepository;
 
+	/**
+	 * For GET "/feeds", return list of feeds to feeds.html
+	 * 
+	 * @param page
+	 * @param sort
+	 * @param count
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getFeeds(@RequestParam(value = "feedId", required = false) Long feedId,
-			@RequestParam(value = "count", required = false) Integer count)
+	public ModelAndView getFeeds(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "sort", defaultValue = "newest") String sort,
+			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
 		ModelAndView mav = new ModelAndView("feeds");
 		bindContentToModel(mav);
-		if (count != null && feedId != null)
-		{
-			mav.addObject("feeds", feedRepository.getFeeds(feedId, count));
-		} else {
-			mav.addObject("feeds", feedRepository.getFeeds(-1, 20));
-		}
+		mav.addObject("feeds", feedRepository.getFeeds(page, sort, count));
 		return mav;
 	}
 
-	@RequestMapping(value = "{feedId}", method = RequestMethod.GET)
+	/**
+	 * For GET "/feeds/feed/{feed}", return feed to feed.html
+	 * 
+	 * @param feedId
+	 * @return
+	 */
+	@RequestMapping(value = "/feed/{feedId}", method = RequestMethod.GET)
 	public ModelAndView getFeed(@PathVariable("feedId") long feedId)
 	{
 		ModelAndView mav = new ModelAndView("feed");
 		bindContentToModel(mav);
-		mav.addObject("feeds", feedRepository.getFeed(feedId));
+		mav.addObject("feed", feedRepository.getFeed(feedId));
 		return mav;
 	}
 }
