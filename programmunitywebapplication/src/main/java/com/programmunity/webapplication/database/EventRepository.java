@@ -57,4 +57,14 @@ public interface EventRepository
 	 */
 	public Event getEvent(long eventId);
 
+	/**
+	 * Gets a list of events from page, sort, and id
+	 * 
+	 * @param page
+	 * @param sort
+	 * @param count
+	 * @return list of events
+	 */
+	public List<Event> getEvents(Integer page, String sort, int count);
+
 }

@@ -25,33 +25,32 @@ public class EventsController extends BaseController
 	@Autowired
 	private EventRepository eventRepository;
 
+	// TODO: Add validation on all fields
 	/**
 	 * Sets up page to display a {@link List} of {@link Event}
 	 * 
-	 * @param eventId of first {@link Event}
-	 * @param count of amount of {@link Event}s
+	 * @param eventId
+	 *            of first {@link Event}
+	 * @param count
+	 *            of amount of {@link Event}s
 	 * @return {@link ModelAndView}
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView eventList(@RequestParam(value = "eventId", required = false) Long eventId,
+	public ModelAndView eventList(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "sort", defaultValue = "newest") String sort,
 			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
 		ModelAndView mav = new ModelAndView("events");
 		bindContentToModel(mav);
-
-		if (eventId != null)
-		{
-			mav.addObject("events", eventRepository.getEvents(eventId, count));
-		} else
-		{
-			mav.addObject("events", eventRepository.getEvents(count));
-		}
+		mav.addObject("events", eventRepository.getEvents(page, sort, count));
 		return mav;
 	}
 
 	/**
 	 * Sets up page to display details of an event
-	 * @param eventId of event
+	 * 
+	 * @param eventId
+	 *            of event
 	 * @return {@link ModelAndView}
 	 */
 	@RequestMapping(value = "/details", method = RequestMethod.GET)

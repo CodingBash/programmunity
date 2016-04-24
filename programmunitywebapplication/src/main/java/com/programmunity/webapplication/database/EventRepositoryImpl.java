@@ -139,4 +139,13 @@ public class EventRepositoryImpl implements EventRepository
 		return getEvents(-1, eventIds.size());
 	}
 
+	/**
+	 * @see com.programmunity.webapplication.database.EventRepository#getEvents(Integer, String, int)
+	 */
+	@Override
+	public List<Event> getEvents(Integer page, String sort, int count)
+	{
+		return getEvents(-1, count);
+	}
+
 }

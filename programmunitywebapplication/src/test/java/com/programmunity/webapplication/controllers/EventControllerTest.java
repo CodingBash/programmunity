@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -66,8 +65,11 @@ public class EventControllerTest
 
 		/*
 		 * Set return of event repository to the mock event list
+		 * 
+		 * !IMPORTANT: The arguments are from the default values of the
+		 * controller method
 		 */
-		Mockito.when(eventRepository.getEvents(Long.MAX_VALUE, count)).thenReturn(expectedEvents);
+		Mockito.when(eventRepository.getEvents(1, "newest", 20)).thenReturn(expectedEvents);
 
 		/*
 		 * Build the mock mvc
@@ -80,40 +82,42 @@ public class EventControllerTest
 	 * Tests method mapping and view name
 	 * 
 	 * @method {@link EventsController#eventList()}
-	 * @objective Send a mock GET
-	 *            "/events?eventId=9223372036854775807&count=20/"
-	 * @expectedResults Receives correct view name
+	 * @perform Send a mock GET "/events/"
+	 * 
+	 * @expectedResults Receives correct view name "events"
+	 * @expectedResults HTTP OK
+	 * @expectedResults Correct forward url "events"
+	 * @expectedResults Has an "events" attribute
+	 * @expectedResults "events" attribute is same as mock
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testEventList() throws Exception
 	{
-		Map<String, Object> requestParameters = new HashMap<String, Object>();
-		requestParameters.put("eventId", Long.MAX_VALUE);
-		requestParameters.put("count", count);
-		
-		mockMvc.perform(
-				MockMvcRequestBuilders.get(constructRequest("/events", requestParameters)))
-				.andExpect(MockMvcResultMatchers.view().name("events"))
-				.andExpect(MockMvcResultMatchers.status().isOk())
+		Map<String, Object> requestParameters = null;
+
+		/*
+		 */
+		mockMvc.perform(MockMvcRequestBuilders.get(constructRequest("/events", requestParameters)))
+				.andExpect(MockMvcResultMatchers.view().name("events")).andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.forwardedUrl("events"))
-				.andExpect(MockMvcResultMatchers.model().attributeExists("events"))
-				.andExpect(MockMvcResultMatchers.model().attribute("events", Matchers.hasItems(expectedEvents.toArray())));
+				.andExpect(MockMvcResultMatchers.model().attributeExists("events")).andExpect(
+						MockMvcResultMatchers.model().attribute("events", Matchers.hasItems(expectedEvents.toArray())));
 
 	}
 
 	/**
 	 * Create the mock event list
 	 * 
-	 * @param count 
-	 * 				amount of events to add to list
+	 * @param count
+	 *            amount of events to add to list
 	 * @return mock event list
 	 */
 	private List<Event> createEventList(int count)
 	{
 		List<Event> eventList = new ArrayList<Event>(count);
-		
+
 		for (int i = 0; i <= count; i++)
 		{
 			Event event = new Event();
@@ -150,50 +154,56 @@ public class EventControllerTest
 		}
 		return eventList;
 	}
-	
+
 	/**
 	 * Construct a request string from a mapping and requestParameter
 	 * 
 	 * Expecting: "/mapping?key1=value1&key2=value2&key3=value3"
 	 * 
-	 * @param mapping initial mapping
-	 * @param requestParameters request parameters
+	 * @param mapping
+	 *            initial mapping
+	 * @param requestParameters
+	 *            request parameters
 	 * @return request string
 	 */
-	private String constructRequest(String mapping, Map<String, Object> requestParameters){
+	private String constructRequest(String mapping, Map<String, Object> requestParameters)
+	{
 		// Create StringBuilder to append entities
 		StringBuilder requestBuilder = new StringBuilder();
-		
+
 		// Append mapping
 		requestBuilder.append(mapping);
-		
+
 		// Boolean to determine first entry to prevent adding "&" to first
 		boolean firstEntry = true;
-		
-		// Iterate through all request parameters
-		for(Map.Entry<String,Object> entry : requestParameters.entrySet()) {
-			/*
-			 * Get data from map
-			 */
-			String key = entry.getKey();
-			Object value = entry.getValue();
-			
-			// Add correct symbol depending on entry
-			if (!firstEntry)
+
+		if (requestParameters != null)
+		{
+			// Iterate through all request parameters
+			for (Map.Entry<String, Object> entry : requestParameters.entrySet())
 			{
-				requestBuilder.append("&");
+				/*
+				 * Get data from map
+				 */
+				String key = entry.getKey();
+				Object value = entry.getValue();
+
+				// Add correct symbol depending on entry
+				if (!firstEntry)
+				{
+					requestBuilder.append("&");
+				} else
+				{
+					requestBuilder.append("?");
+					firstEntry = false;
+				}
+
+				// Append the data
+				requestBuilder.append(key).append("=").append(value);
 			}
-			else 
-			{
-				requestBuilder.append("?");
-				firstEntry = false;
-			}
-			
-			// Append the data
-			requestBuilder.append(key).append("=").append(value);
 		}
 		requestBuilder.append("/");
-		System.out.println(requestBuilder.toString());
+		
 		return requestBuilder.toString();
 	}
 
