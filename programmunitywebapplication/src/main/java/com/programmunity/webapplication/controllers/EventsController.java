@@ -9,13 +9,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.EventRepository;
 
+/**
+ * Controls event mappings
+ * 
+ * @author Bash
+ *
+ */
 @RequestMapping("/events")
 @Controller
 public class EventsController extends BaseController
 {
+	/**
+	 * Repository to get event data
+	 */
 	@Autowired
 	private EventRepository eventRepository;
 
+	/**
+	 * Sets up page to display a {@link List} of {@link Event}
+	 * 
+	 * @param eventId of first {@link Event}
+	 * @param count of amount of {@link Event}s
+	 * @return {@link ModelAndView}
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView eventList(@RequestParam(value = "eventId", required = false) Long eventId,
 			@RequestParam(value = "count", defaultValue = "20") int count)
@@ -23,8 +39,6 @@ public class EventsController extends BaseController
 		ModelAndView mav = new ModelAndView("events");
 		bindContentToModel(mav);
 
-		// TODO: Determine which condition is most likely to occur then reorder
-		// conditional
 		if (eventId != null)
 		{
 			mav.addObject("events", eventRepository.getEvents(eventId, count));
@@ -35,6 +49,11 @@ public class EventsController extends BaseController
 		return mav;
 	}
 
+	/**
+	 * Sets up page to display details of an event
+	 * @param eventId of event
+	 * @return {@link ModelAndView}
+	 */
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public ModelAndView eventDetails(@RequestParam(value = "eventId") long eventId)
 	{
