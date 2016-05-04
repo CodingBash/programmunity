@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.UserRepository;
 import com.programmunity.webapplication.exceptions.UserRetrievalException;
+import com.programmunity.webapplication.models.User;
 
 /**
  * Controller for profile page
@@ -33,16 +34,25 @@ public class ProfileController extends BaseController
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public ModelAndView getUserProfile(@PathVariable("userId") long userId)
 	{
+		// Create ModelAndView and set view to "profile"
 		ModelAndView mav = new ModelAndView("profile");
+
+		// Insert consistent content to model
 		bindContentToModel(mav);
 		try
 		{
-			mav.addObject("coder", userRepository.getUser(userId));
+			// Retrieve user from repository using request parameter
+			User retrievedUser = userRepository.getUser(userId);
+
+			// Insert user to model
+			mav.addObject("user", retrievedUser);
 		} catch (UserRetrievalException e)
 		{
+			// Add error to model
 			mav.addObject("error", e.getMessage());
 			e.printStackTrace();
 		}
+
 		return mav;
 	}
 }

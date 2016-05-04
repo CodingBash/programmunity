@@ -1,5 +1,7 @@
 package com.programmunity.webapplication.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.programmunity.webapplication.database.FeedRepository;
+import com.programmunity.webapplication.models.Feed;
 
 /**
  * Handles feed mappings
@@ -37,9 +40,19 @@ public class FeedController extends BaseController
 			@RequestParam(value = "sort", defaultValue = "newest") String sort,
 			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
+		
+		// Create ModelAndView and set view to "feeds"
 		ModelAndView mav = new ModelAndView("feeds");
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
-		mav.addObject("feeds", feedRepository.getFeeds(page, sort, count));
+		
+		// Retrieve list from repository using request parameters
+		List<Feed> retrievedFeedList = feedRepository.getFeeds(page, sort, count);
+		
+		// Insert list to model
+		mav.addObject("feeds", retrievedFeedList);
+		
 		return mav;
 	}
 
@@ -52,9 +65,19 @@ public class FeedController extends BaseController
 	@RequestMapping(value = "/feed/{feedId}", method = RequestMethod.GET)
 	public ModelAndView getFeed(@PathVariable("feedId") long feedId)
 	{
+		
+		// Create ModelAndView and set view to "feed"
 		ModelAndView mav = new ModelAndView("feed");
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
-		mav.addObject("feed", feedRepository.getFeed(feedId));
+		
+		// Retrieve feed from repository using request parameter
+		Feed retrievedFeed = feedRepository.getFeed(feedId);
+		
+		// Insert feed to model
+		mav.addObject("feed", retrievedFeed );
+		
 		return mav;
 	}
 }

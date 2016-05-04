@@ -24,7 +24,10 @@ public class HomeController extends BaseController
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView onHome()
 	{
+		// Create ModelAndView and set view to "home"
 		ModelAndView mav = new ModelAndView("home");
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
 		return mav;
 	}

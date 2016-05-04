@@ -27,7 +27,7 @@
 		<beans:property name="suffix" value=".html" />
 		<beans:property name="templateMode" value="HTML5" />
 	</beans:bean>
- 
+
 	<beans:bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<beans:property name="templateResolver" ref="templateResolver" />
 	</beans:bean>

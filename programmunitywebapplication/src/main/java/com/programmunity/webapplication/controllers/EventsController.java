@@ -44,9 +44,18 @@ public class EventsController extends BaseController
 			@RequestParam(value = "sort", defaultValue = "newest") String sort,
 			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
+		// Create ModelAndView and set view to "events"
 		ModelAndView mav = new ModelAndView("events");
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
-		mav.addObject("events", eventRepository.getEvents(page, sort, count));
+		
+		// Retrieve list from repository using request parameters
+		List<Event> retrievedEventList = eventRepository.getEvents(page, sort, count);
+		
+		// Insert list to model
+		mav.addObject("events", retrievedEventList);
+		
 		return mav;
 	}
 
@@ -60,9 +69,18 @@ public class EventsController extends BaseController
 	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
 	public ModelAndView eventDetails(@PathVariable(value = "eventId") long eventId)
 	{
+		// Create ModelAndView and set view to "event"
 		ModelAndView mav = new ModelAndView("event");
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
-		mav.addObject("event", eventRepository.getEvent(eventId));
+		
+		// Retrieve event from repository using request parameter
+		Event retrievedEvent = eventRepository.getEvent(eventId);
+		
+		// Insert event to model
+		mav.addObject("event", retrievedEvent);
+		
 		return mav;
 	}
 
@@ -72,9 +90,15 @@ public class EventsController extends BaseController
 	public ModelAndView eventRegister(@PathVariable(value = "eventId") long eventId,
 			@RequestParam(value = "userId") long userId)
 	{
+		// Create ModelAndView and set view to redirect link
 		ModelAndView mav = new ModelAndView("redirect: /events?eventId=" + eventId);
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
+		
+		// Register user to event using request parameters
 		eventRepository.register(eventId, userId);
+		
 		return mav;
 		// TODO: Add flashattribute to determine confirmation. Then have
 		// notify.js confirmation

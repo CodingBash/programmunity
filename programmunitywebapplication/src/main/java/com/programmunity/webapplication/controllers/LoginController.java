@@ -38,35 +38,51 @@ public class LoginController extends BaseController
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getLoginPage()
 	{
+
+		// Create ModelAndView and set view to "login"
 		ModelAndView mav = new ModelAndView("login");
+
+		// Insert consistent content to model
 		bindContentToModel(mav);
 		return mav;
 	}
 
+	// TODO: This seems like the code for registration. . .
 	/**
 	 * Login form submit. Redirect to /dashboard
 	 * 
-	 * @param coder
+	 * @param user
 	 * @param errors
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView submitLogin(@Valid User coder, Errors errors)
+	public ModelAndView submitLogin(@Valid User user, Errors errors)
 	{
+		// Check if validation has errors
 		if (errors.hasErrors())
 		{
+			// TODO: Add login model variables for error?
+			// If it does, go back to login page
 			return new ModelAndView("login");
 		}
+
+		// Create ModelAndView and set view to redirect link
 		ModelAndView mav = new ModelAndView("redirect: /dashboard");
+
 		try
 		{
-			userRepository.saveUser(coder);
+			// Save user in repository
+			userRepository.saveUser(user);
 		} catch (UserSaveException e)
 		{
+			// If error saving, add error
 			mav.addObject("error", e.getMessage());
 			e.printStackTrace();
 		}
+
+		// Insert consistent content to model
 		bindContentToModel(mav);
+
 		return mav;
 	}
 

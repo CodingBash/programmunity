@@ -24,8 +24,12 @@ public class DashboardController extends BaseController
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView dashboard()
 	{
-		ModelAndView mav = new ModelAndView("dashboard");  
+		// Create ModelAndView and set view to "dashboard"
+		ModelAndView mav = new ModelAndView("dashboard"); 
+		
+		// Insert consistent content to model
 		bindContentToModel(mav);
+
 		return mav;
 	}
 }
