@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+
+.panel {
+	display: inline-block;
+	position: relative;
+	float: left;
+}
+
+ul {
+	list-style-type: none;
+}

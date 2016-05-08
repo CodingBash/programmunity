@@ -5,17 +5,17 @@
 <title>Home</title>
 </head>
 <body>
-	<form name="f" th:object="${coder} method="POST">
+	<form name="f" th:object="${coder}" method="POST">
 		<div class="errors" th:if="${#fields.hasErrors('*')}">
 			<ul>
 				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
 			</ul>
 		</div>
 		<label th:class="${#fields.hasErrors('firstName')} ? 'error'">First Name</label>
-		<input type="text" th:field="${firstName}" th:class="${#fields.hasErrors('firstName')}" />
+		<input type="text" th:field="${firstName}" th:class="${#fields.hasErrors('firstName')} ? 'error'" />
 
 		<label th:class="${#fields.hasErrors('lastName')} ? 'error'">Last Name</label>
-		<input type="text" th:fields="${lastName}" th:class="${#fields.hasErrprs('lastName')} ? 'error'" />
+		<input type="text" th:field="${lastName}" th:class="${#fields.hasErrors('lastName')} ? 'error'" />
 
 		<label th:class="${#fields.hasErrors('email')} ? 'error'">Email</label>
 		<input type="email" th:field="${email}" th:class="${#fields.hasErrors('email')} ? 'error'" />
@@ -28,4 +28,37 @@
 	</form>
 </body>
 </html>
+
+
+<!-- 
+<form name="f" role="form" th:object="${user}" method="POST">
+					<div class="errors" th:if="${#fields.hasErrors('*')}">
+						<ul>
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Error</li>
+						</ul>
+					</div>
+					<div class="form-group">
+						<label th:class="${#fields.hasErrors('email')} ? 'error'">Email</label>
+						<input type="email" th:field="${email}" class="form-control"
+							th:class="${#fields.hasErrors('email')} ? 'error'" />
+					</div>
+
+					<div class="form-group">
+						<label th:class="${#field.hasErrors('username') ? 'error'">Username</label>
+						<input type="text" th:field="${username}" class="form-control"
+							th:class="${#field.hasErrors('username') ? 'error'" />
+					</div>
+
+					<div class="form-group">
+						<label th:class="${#field.hasError('password') ? 'error'">Password</label>
+						<input type="password" th:field="${password}" class="form-control"
+							th:class="${#field.hasErrors('password') ? 'error'" />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Register</button>
+					</div>
+				</form>
+
+ -->
 

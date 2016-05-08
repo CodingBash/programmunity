@@ -1,11 +1,195 @@
+<!-- 
+Data Required:
+
+List of top groups
+
+ -->
+
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Home</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description"
+	content="Programmunity is a nonprofit organization aimed to help new coders learn programming" />
+<title th:text="${title}">Programunity</title>
+
+
+<!-- IMPORT BOOTSTRAP CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+
+<!-- IMPORT LOCAL CSS -->
+<link th:href="@{/resources/styles/common.css}" href="../../styles/common.css" rel="stylesheet"
+	type="text/css" />
+
 </head>
 <body>
-	<h1>Home</h1>
-	<a th:href="@{/login}">Login</a>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:text="${brand}">ProgramUnity</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">LOREM</a></li>
+					<li><a href="#">LOREM</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">LOREM</a></li>
+							<li><a href="#">LOREM</a></li>
+							<li><a href="#">LOREM</a></li>
+							<li><a href="#">LOREM</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">LOREM</a></li>
+							<li><a href="#">LOREM</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/login}">Login</a></li>
+					<li><a th:href="@{/register}">Signup</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="jumbotron text-center">
+		<h1>Welcome to</h1>
+		<h2>Programmunity</h2>
+
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-9">
+				<h3>Top Unities</h3>
+			</div>
+			<div class="col-sm-3"></div>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-9">
+				<ul>
+					<li th:each="unity : ${unities}">
+						<div class="col-sm-3">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 th:text="${unity.groupName}" class="">Unity Name</h4>
+								</div>
+								<div class="panel-body">
+									<p th:text="${unity.description}">Lorem ipsum dolor sit amet, consectetur adipiscing
+										elit. Mauris a sodales leo, non consequat velit. Vivamus fermentum, quam at eleifend
+										lacinia, diam sem scelerisque mi, vel accumsan nisi tortor non nibh. Vestibulum nunc est,
+										malesuada sed nunc sit amet, efficitur sodales purus. Vivamus faucibus nisl at varius
+										fringilla. Maecenas quis nunc eu velit porttitor imperdiet a sit amet nisi. Sed ac mi a
+										dui volutpat efficitur. Integer ac efficitur lectus. Proin viverra elit vitae urna
+										blandit, id ultricies lorem iaculis. Quisque at auctor mi. Pellentesque tincidunt dui
+										urna, at lacinia lacus suscipit eget. Ut sit amet nunc ac neque rhoncus rhoncus sit amet
+										ut nunc.</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-3 text-center">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Log in to your account</h3>
+					</div>
+					<div class="panel-body">
+
+						<!-- 
+						<form name="f" role="form" th:action="@{/login}" th:object="${user}" method="POST">
+							<div class="errors" th:if="${#fields.hasErrors('*')}">
+								<ul>
+									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Error</li>
+								</ul>
+							</div>
+
+							<div class="form-group">
+								<label th:class="${#fields.hasErrors('userName')} ? 'error'">Username</label>
+								<input type="text" th:field="*{userName}" class="form-control"
+									th:classappend="${#fields.hasErrors('userName')} ? 'error'" />
+							</div>
+
+							<div class="form-group">
+								<label th:class="${#fields.hasErrors('password')} ? 'error'">Password</label>
+								<input type="password" th:field="*{password}" class="form-control"
+									th:classappend="${#fields.hasErrors('password')} ? 'error'" />
+							</div>
+
+							<div class="form-group">
+								<div class="checkbox">
+									<label><input type="checkbox" />Remember me</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-default">Login</button>
+							</div>
+						</form>
+!-->
+						<!-- Change to ${/login} once user store and security is configured -->
+						<form name="f" role="form" th:action="@{/login}" th:object="${loginForm}" method="POST">
+							<div th:if="${param.error}" class="alert alert-danger">
+								<p>Invalid username and password</p>
+							</div>
+
+							<div th:if="${param.logout}" class="alert alert-danger">
+								<p>You've been logged out</p>
+							</div>
+
+							<div class="form-group" th:classappend="${param.error} ? 'has-error'">
+								<label class="col-sm-2 control-label">Username</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="username" name="username" required="required" />
+								</div>
+							</div>
+
+							<div class="form-group" th:classappend="${param.error} ? 'has error'">
+								<label class="col-sm-2 control-label">Password</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="password" name="password"
+										required="required" />
+								</div>
+							</div>
+
+							<div class="checkbox">
+								<label><input type="checkbox" id="rememberMe" name="rememberMe">Remember me</label>
+
+							</div>
+
+							<button type="submit" class="btn btn-default">Log in</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid text-center">
+		<h3>Join today to be connected with other coders!</h3>
+		<a class="btn btn-info btn-lg" href="#">Join</a>
+	</div>
+	<div class="container-fluid text-center">
+		<h3>See why programmunity is the top social media for coders</h3>
+		<a class="btn btn-info btn-lg" href="#">About us</a>
+	</div>
+
+	<!-- IMPORT JQUERY -->
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"
+		integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<!-- IMPORT BOOTSTRAP JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+		crossorigin="anonymous"></script>
 </body>
 </html>
 
