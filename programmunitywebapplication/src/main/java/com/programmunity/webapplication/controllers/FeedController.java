@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.FeedRepository;
 import com.programmunity.webapplication.models.Feed;
 
@@ -42,7 +43,7 @@ public class FeedController extends BaseController
 	{
 		
 		// Create ModelAndView and set view to "feeds"
-		ModelAndView mav = new ModelAndView("feeds");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "feeds");
 		
 		// Insert consistent content to model
 		bindContentToModel(mav);
@@ -67,7 +68,7 @@ public class FeedController extends BaseController
 	{
 		
 		// Create ModelAndView and set view to "feed"
-		ModelAndView mav = new ModelAndView("feed");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder +  "feed");
 		
 		// Insert consistent content to model
 		bindContentToModel(mav);

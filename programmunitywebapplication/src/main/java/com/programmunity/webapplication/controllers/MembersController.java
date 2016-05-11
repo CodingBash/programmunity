@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.UserRepository;
 import com.programmunity.webapplication.exceptions.UserRetrievalException;
 import com.programmunity.webapplication.models.User;
@@ -37,7 +38,7 @@ public class MembersController extends BaseController
 			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
 		// Create ModelAndView and set view to "members"
-		ModelAndView mav = new ModelAndView("members");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder +  "members");
 
 		// Insert consistent content to model
 		bindContentToModel(mav);

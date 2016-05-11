@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
+
 /**
  * Controller for dashboard page
  * 
@@ -25,7 +27,7 @@ public class DashboardController extends BaseController
 	public ModelAndView dashboard()
 	{
 		// Create ModelAndView and set view to "dashboard"
-		ModelAndView mav = new ModelAndView("dashboard"); 
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "dashboard"); 
 		
 		// Insert consistent content to model
 		bindContentToModel(mav);

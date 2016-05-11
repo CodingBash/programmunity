@@ -1,5 +1,54 @@
 @CHARSET "ISO-8859-1";
 
+@import
+	url(https://fonts.googleapis.com/css?family=Open+Sans|Tinos|Lobster|Montserrat:400,700)
+	;
+
+/*
+Color Scheme:
+Primary: #CBE86B (Lime green)
+Secondary: #1C140D (Light black)
+Tertiary: #F2E9E1 (Cream)
+Quartiary: #CBE86B (Lime green)
+Fifth: #FFFFFF (white)
+*/
+body {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	font-family: 'Tinos', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+	font-size: 3.0em !important;
+}
+
+h2 {
+	font-size: 2.5em !important;
+}
+
+h3 {
+	font-size: 2.2em !important;
+}
+
+h4 {
+	font-size: 2.0em !important;
+}
+
+h5 {
+	font-size: 1.6em !important;
+}
+
+h6 {
+	font-size: 1.4em !important;
+}
+
 .panel {
 	display: inline-block;
 	position: relative;
@@ -8,4 +57,14 @@
 
 ul {
 	list-style-type: none;
+}
+
+.jumbotron {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+nav {
+	margin: 0 !important;
+	padding: 0 !important;
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.GroupRepository;
 import com.programmunity.webapplication.models.Group;
 
@@ -21,7 +22,7 @@ import com.programmunity.webapplication.models.Group;
 @Controller
 public class HomeController extends BaseController
 {
-	
+
 	@Autowired
 	private GroupRepository groupRepository;
 
@@ -34,15 +35,16 @@ public class HomeController extends BaseController
 	public ModelAndView onHome()
 	{
 		// Create ModelAndView and set view to "home"
-		ModelAndView mav = new ModelAndView("home");
-		
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "home");
+
 		// Insert consistent content to model
 		bindContentToModel(mav);
-		
+
 		List<Group> retrievedTopGroups = groupRepository.retrieveTopGroups(3);
-		
+
+		mav.addObject("title", "Title");
 		mav.addObject("unities", retrievedTopGroups);
-		
+
 		return mav;
 	}
 }

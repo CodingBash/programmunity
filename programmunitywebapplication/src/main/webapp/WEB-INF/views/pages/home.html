@@ -5,62 +5,60 @@ List of top groups
 
  -->
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head th:replace="fragments/head :: head">
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 <meta name="description"
-	content="Programmunity is a nonprofit organization aimed to help new coders learn programming" />
+	content="Programmunity is a nonprofit organization aimed to help new coders learn programming"></meta>
 <title th:text="${title}">Programunity</title>
-
 
 <!-- IMPORT BOOTSTRAP CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous" />
+	crossorigin="anonymous"></link>
 
 <!-- IMPORT LOCAL CSS -->
-<link th:href="@{/resources/styles/common.css}" href="../../styles/common.css" rel="stylesheet"
-	type="text/css" />
-
+<link th:href="@{/resources/styles/common.css}" href="../../../resources/styles/common.css"
+	rel="stylesheet" type="text/css"></link>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:text="${brand}">ProgramUnity</a>
+	<div th:replace="fragments/nav :: nav">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" th:text="${brand}">ProgramUnity</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">LOREM</a></li>
+						<li><a href="#">LOREM</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">LOREM</a></li>
+								<li><a href="#">LOREM</a></li>
+								<li><a href="#">LOREM</a></li>
+								<li><a href="#">LOREM</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">LOREM</a></li>
+								<li><a href="#">LOREM</a></li>
+							</ul></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/login}">Login</a></li>
+						<li><a th:href="@{/register}">Signup</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">LOREM</a></li>
-					<li><a href="#">LOREM</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">LOREM</a></li>
-							<li><a href="#">LOREM</a></li>
-							<li><a href="#">LOREM</a></li>
-							<li><a href="#">LOREM</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">LOREM</a></li>
-							<li><a href="#">LOREM</a></li>
-						</ul></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a th:href="@{/login}">Login</a></li>
-					<li><a th:href="@{/register}">Signup</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+		</nav>
+	</div>
 	<div class="jumbotron text-center">
 		<h1>Welcome to</h1>
 		<h2>Programmunity</h2>
@@ -162,7 +160,7 @@ List of top groups
 							</div>
 
 							<div class="checkbox">
-								<label><input type="checkbox" id="rememberMe" name="rememberMe">Remember me</label>
+								<label><input type="checkbox" id="rememberMe" name="rememberMe" />Remember me</label>
 
 							</div>
 

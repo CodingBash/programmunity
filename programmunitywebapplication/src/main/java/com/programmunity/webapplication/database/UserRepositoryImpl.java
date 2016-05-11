@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import com.programmunity.webapplication.constants.SkillLevel;
@@ -16,6 +17,24 @@ import com.programmunity.webapplication.models.User;
 public class UserRepositoryImpl implements UserRepository
 {
 
+	
+	
+	private SessionFactory sessionFactory;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * @see UserRepository#saveUser(User)
 	 */

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.UserRepository;
 import com.programmunity.webapplication.exceptions.UserSaveException;
 import com.programmunity.webapplication.models.User;
@@ -40,7 +41,7 @@ public class LoginController extends BaseController
 	{
 
 		// Create ModelAndView and set view to "login"
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "login");
 
 		// Insert consistent content to model
 		bindContentToModel(mav);
@@ -63,7 +64,7 @@ public class LoginController extends BaseController
 		{
 			// TODO: Add login model variables for error?
 			// If it does, go back to login page
-			return new ModelAndView("login");
+			return new ModelAndView(ApplicationConstants.pageFolder +  "login");
 		}
 
 		// Create ModelAndView and set view to redirect link

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.UserRepository;
 import com.programmunity.webapplication.exceptions.UserRetrievalException;
 import com.programmunity.webapplication.models.User;
@@ -35,7 +36,7 @@ public class ProfileController extends BaseController
 	public ModelAndView getUserProfile(@PathVariable("userId") long userId)
 	{
 		// Create ModelAndView and set view to "profile"
-		ModelAndView mav = new ModelAndView("profile");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "profile");
 
 		// Insert consistent content to model
 		bindContentToModel(mav);

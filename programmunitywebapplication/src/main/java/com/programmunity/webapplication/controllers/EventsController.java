@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.programmunity.webapplication.constants.ApplicationConstants;
 import com.programmunity.webapplication.database.EventRepository;
 import com.programmunity.webapplication.models.Event;
 
@@ -45,7 +46,7 @@ public class EventsController extends BaseController
 			@RequestParam(value = "count", defaultValue = "20") int count)
 	{
 		// Create ModelAndView and set view to "events"
-		ModelAndView mav = new ModelAndView("events");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder + "events");
 		
 		// Insert consistent content to model
 		bindContentToModel(mav);
@@ -70,7 +71,7 @@ public class EventsController extends BaseController
 	public ModelAndView eventDetails(@PathVariable(value = "eventId") long eventId)
 	{
 		// Create ModelAndView and set view to "event"
-		ModelAndView mav = new ModelAndView("event");
+		ModelAndView mav = new ModelAndView(ApplicationConstants.pageFolder +  "event");
 		
 		// Insert consistent content to model
 		bindContentToModel(mav);
