@@ -189,6 +189,12 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.2.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-tools</artifactId>
+			<version>4.3.3.Final</version>
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>

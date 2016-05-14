@@ -1,0 +1,5 @@
+insert into groups (groupId, ownerId, groupName, groupDescription) values (1, 22, 'blandit', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.');
+insert into groups (groupId, ownerId, groupName, groupDescription) values (2, 9, 'orci', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
+insert into groups (groupId, ownerId, groupName, groupDescription) values (3, 14, 'semper', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.');
+insert into groups (groupId, ownerId, groupName, groupDescription) values (4, 49, 'urna', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.');
+insert into groups (groupId, ownerId, groupName, groupDescription) values (5, 38, 'convallis', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.');
