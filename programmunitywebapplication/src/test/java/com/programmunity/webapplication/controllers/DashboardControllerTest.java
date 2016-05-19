@@ -1,6 +1,7 @@
 package com.programmunity.webapplication.controllers;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,6 +15,7 @@ import org.springframework.test.web.server.setup.MockMvcBuilders;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml")
+@Ignore
 public class DashboardControllerTest
 {
 

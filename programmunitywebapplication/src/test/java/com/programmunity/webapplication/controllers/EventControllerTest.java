@@ -35,8 +35,10 @@ import com.programmunity.webapplication.models.User;
  * @author Basheer
  *
  */
+@SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml")
+@Ignore
 public class EventControllerTest extends ControllerTest
 {
 
@@ -185,7 +187,7 @@ public class EventControllerTest extends ControllerTest
 				.andExpect(MockMvcResultMatchers.model().attribute("event", Matchers.equalTo(expectedEvent)));
 
 	}
-	
+
 	/**
 	 * Create the mock event list
 	 * 
@@ -236,6 +238,7 @@ public class EventControllerTest extends ControllerTest
 
 	/**
 	 * Creates a mock event
+	 * 
 	 * @return
 	 */
 	private Event createEvent()
